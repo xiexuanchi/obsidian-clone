@@ -1,0 +1,480 @@
+/* 全局重置与基础字体 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "微软雅黑", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #202020;
+    color: #dcddde;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- 左侧侧边栏 --- */
+.sidebar {
+    width: 280px;
+    min-width: 200px;
+    background-color: #1e1e1e;
+    border-right: 1px solid #2d2d2d;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar-header {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2d2d2d;
+    background-color: #252525;
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #a8a8a8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 4px;
+    position: relative;
+    z-index: 20;
+}
+
+.header-buttons button {
+    background: transparent;
+    border: 1px solid #3d3d3d;
+    color: #dcddde;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s;
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
+    user-select: none;
+}
+
+.header-buttons button:hover {
+    background-color: #3d3d3d;
+    border-color: #4d4d4d;
+}
+
+.header-buttons button:active {
+    background-color: #4d4d4d;
+    transform: scale(0.95);
+}
+
+/* 文件树 */
+.file-tree {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 0;
+    font-size: 13px;
+}
+
+.file-tree::-webkit-scrollbar {
+    width: 8px;
+}
+
+.file-tree::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.file-tree::-webkit-scrollbar-thumb {
+    background: #3d3d3d;
+    border-radius: 4px;
+}
+
+.file-tree::-webkit-scrollbar-thumb:hover {
+    background: #4d4d4d;
+}
+
+.empty-state {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+}
+
+.tree-item {
+    padding: 4px 8px 4px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #a8a8a8;
+    transition: background 0.15s;
+    position: relative;
+}
+
+.tree-item:hover {
+    background-color: #2a2a2a;
+}
+
+.tree-item.active {
+    background-color: #2d3d52;
+    color: #7f9cf5;
+}
+
+.tree-item.folder {
+    font-weight: 500;
+}
+
+.tree-item.file {
+    padding-left: 32px;
+}
+
+.tree-item-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.tree-item-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tree-children {
+    margin-left: 8px;
+    display: none;
+}
+
+.tree-item.expanded > .tree-children {
+    display: block;
+}
+
+/* --- 右侧主区域 --- */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #202020;
+    overflow: hidden;
+}
+
+.editor-header {
+    padding: 10px 16px;
+    border-bottom: 1px solid #2d2d2d;
+    display: flex;
+    align-items: center;
+    background-color: #252525;
+    min-height: 48px;
+}
+
+.file-path {
+    flex: 1;
+    color: #a8a8a8;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Mono", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "微软雅黑", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.header-actions button {
+    background-color: #3d3d3d;
+    color: #dcddde;
+    border: 1px solid #4d4d4d;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.header-actions button:hover {
+    background-color: #4d4d4d;
+    border-color: #5d5d5d;
+}
+
+#toggle-view-btn {
+    width: 32px;
+    padding: 6px;
+}
+
+#save-btn {
+    background-color: #7f9cf5;
+    border-color: #7f9cf5;
+    color: white;
+    font-weight: 500;
+}
+
+#save-btn:hover {
+    background-color: #8fa9ff;
+    border-color: #8fa9ff;
+}
+
+/* 编辑器容器 */
+.editor-container {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.editor-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.preview-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* 编辑器视图模式 */
+.editor-container.split-view .editor-pane {
+    flex: 1;
+}
+
+.editor-container.split-view .preview-pane {
+    flex: 1;
+}
+
+.editor-container.editor-only .preview-pane {
+    display: none;
+}
+
+.editor-container.preview-only .editor-pane {
+    display: none;
+}
+
+/* 分隔条 */
+.divider {
+    width: 1px;
+    background-color: #2d2d2d;
+    cursor: col-resize;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.divider:hover {
+    background-color: #4d4d4d;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    top: 0;
+    bottom: 0;
+}
+
+/* 编辑器 */
+#markdown-input {
+    flex: 1;
+    background-color: #202020;
+    color: #dcddde;
+    border: none;
+    resize: none;
+    padding: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Mono", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "微软雅黑", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    outline: none;
+    tab-size: 2;
+}
+
+#markdown-input::placeholder {
+    color: #666;
+}
+
+/* Markdown 预览 */
+.markdown-preview {
+    flex: 1;
+    padding: 24px 32px;
+    overflow-y: auto;
+    background-color: #202020;
+    color: #dcddde;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.markdown-preview::-webkit-scrollbar {
+    width: 12px;
+}
+
+.markdown-preview::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.markdown-preview::-webkit-scrollbar-thumb {
+    background: #3d3d3d;
+    border-radius: 6px;
+}
+
+.markdown-preview::-webkit-scrollbar-thumb:hover {
+    background: #4d4d4d;
+}
+
+/* Markdown 样式 */
+.markdown-preview h1 {
+    font-size: 2em;
+    font-weight: 700;
+    margin: 24px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #3d3d3d;
+    color: #ffffff;
+}
+
+.markdown-preview h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 20px 0 12px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #3d3d3d;
+    color: #ffffff;
+}
+
+.markdown-preview h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin: 16px 0 8px 0;
+    color: #ffffff;
+}
+
+.markdown-preview h4, .markdown-preview h5, .markdown-preview h6 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 12px 0 6px 0;
+    color: #ffffff;
+}
+
+.markdown-preview p {
+    margin: 12px 0;
+    color: #dcddde;
+}
+
+.markdown-preview ul, .markdown-preview ol {
+    margin: 12px 0;
+    padding-left: 28px;
+}
+
+.markdown-preview li {
+    margin: 6px 0;
+    color: #dcddde;
+}
+
+.markdown-preview blockquote {
+    border-left: 4px solid #7f9cf5;
+    padding-left: 16px;
+    margin: 16px 0;
+    color: #a8a8a8;
+    font-style: italic;
+}
+
+.markdown-preview code {
+    background-color: #2a2a2a;
+    color: #e06c75;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Mono", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "微软雅黑", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.9em;
+}
+
+.markdown-preview pre {
+    background-color: #1a1a1a;
+    border: 1px solid #2d2d2d;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 16px 0;
+}
+
+.markdown-preview pre code {
+    background-color: transparent;
+    color: #dcddde;
+    padding: 0;
+}
+
+.markdown-preview a {
+    color: #7f9cf5;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.markdown-preview a:hover {
+    border-bottom-color: #7f9cf5;
+}
+
+.markdown-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 16px 0;
+}
+
+.markdown-preview table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 16px 0;
+}
+
+.markdown-preview table th,
+.markdown-preview table td {
+    border: 1px solid #3d3d3d;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.markdown-preview table th {
+    background-color: #2a2a2a;
+    font-weight: 600;
+}
+
+.markdown-preview hr {
+    border: none;
+    border-top: 1px solid #3d3d3d;
+    margin: 24px 0;
+}
+
+.markdown-preview strong {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.markdown-preview em {
+    font-style: italic;
+}

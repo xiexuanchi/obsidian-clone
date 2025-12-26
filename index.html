@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Obsidian Clone - Markdown笔记</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 id="vault-name">未打开笔记库</h3>
+            <div class="header-buttons">
+                <button id="open-folder-btn" title="打开笔记库文件夹" type="button">📁</button>
+                <button id="open-file-btn" title="打开Markdown文件" type="button">📄</button>
+            </div>
+        </div>
+        <div id="file-tree" class="file-tree">
+            <div class="empty-state">请先打开一个笔记库文件夹或Markdown文件</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="editor-header">
+            <div class="file-path" id="file-path">未选择文件</div>
+        </div>
+        
+        <div class="editor-container" id="editor-container">
+            <div class="editor-pane" id="editor-pane">
+                <textarea id="markdown-input" placeholder="开始在这里输入 Markdown...&#10;&#10;支持的功能：&#10;- 标题 (# ## ###)&#10;- 列表 (- *)&#10;- 代码块 (```)&#10;- 链接和图片&#10;- 粗体和斜体"></textarea>
+            </div>
+            <div class="divider" id="divider"></div>
+            <div class="preview-pane" id="preview-pane">
+                <div id="markdown-preview" class="markdown-preview"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 在页面加载后立即检查 notesAPI
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('[inline] DOMContentLoaded 事件触发');
+            console.log('[inline] window.notesAPI 存在:', !!window.notesAPI);
+            
+            // 等待一段时间后再检查
+            setTimeout(() => {
+                console.log('[inline] 延迟检查 window.notesAPI:', !!window.notesAPI);
+                if (window.notesAPI) {
+                    console.log('[inline] notesAPI 可用，方法列表:', Object.keys(window.notesAPI));
+                } else {
+                    console.error('[inline] notesAPI 仍然不可用！');
+                    console.error('[inline] window 对象的所有属性:', Object.keys(window));
+                }
+            }, 1000);
+        });
+    </script>
+    <script src="renderer.js"></script>
+</body>
+</html>
